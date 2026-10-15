@@ -1,2 +1,2 @@
 # AImodel
-im trying my best to make it  ><
+I'm trying my best to make it  ><
