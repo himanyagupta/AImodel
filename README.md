@@ -1,2 +1,2 @@
 # AImodel
-in making lmao :)
+im trying my best to make it 
