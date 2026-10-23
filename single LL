@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node 
+{int data;
+struct node *next;};
+struct node *start=NULL;
+struct node *newnode()
+{return (struct node*)malloc (sizeof(struct node));}
+
+void insert_begin(int x)
+{
+    struct node *p= newnode();
+    p-> data=x;
+    p->next= NULL;
+    p->next=start;
+    start=p;
+}
+
+void insert_end(int x)
+{
+   struct node *p= newnode();
+   struct node *q= start;
+    p-> data=x;
+    p->next= NULL;
+    while (q->next != NULL)
+    {
+        q=q->next;
+    }
+    q->next =p;
+}
+
+void delete_begin()
+{
+     struct node *q= start;
+     start=start->next;
+     printf("%d is deleted",q->data);
+     free(q);
+}
+
+void delete_end()
+{
+    struct node *p= start;
+    struct node *q= start->next;
+    while (q->next != NULL)
+    {
+        p=p->next;
+        q=q->next;
+    }
+    printf("%d is deleted",q->data);
+    p->next=NULL;
+    free(q);
+}
+
+void traversal()
+{
+    struct node *q=start;
+    while(q!= NULL)
+    {
+        printf("%d \n",q->data);q=q->next;
+    }
+
+}
+int main()
+{int ch,x;
+while(1)
+    {printf("1.insert begin \n 2.insert end \n 3.delete begin \n 4.delete end \n 5.display \n 6.exit \n\t ENTER YOUR CHOICE");
+    scanf("%d",&ch);
+    switch(ch)
+    {case 1: {printf("enter item u want to add");
+              scanf("%d",&x);
+              insert_begin(x);
+              break;}
+    case 2: {printf("enter item u want to add");
+              scanf("%d",&x);
+              insert_end(x);
+              break;}
+    case 3: {delete_begin();break;}
+    case 4: {delete_end();break;}
+    case 5: {traversal();break;}
+    case 6: {exit(0);}
+    default: printf("invalid choice");
+    }
+    
+}return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
