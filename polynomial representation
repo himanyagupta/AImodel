@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node 
+{int cof;
+int pwr;
+struct node *next;
+};
+struct node *p,*x,*p1;
+struct node *start=NULL;
+
+void insert()
+{
+    p=(struct node *)malloc (sizeof (struct node));
+    printf("enter coffecient \n");
+    scanf("%d",&p->cof);
+    printf("enter power \n");
+    scanf("%d",&p->pwr);
+    p->next =NULL;
+    if (start==NULL)
+    {
+        start=p;return;
+    }
+    x=start;
+    while(x->next != NULL)
+    {
+        x=x->next;
+    }
+    x->next=p;
+}
+
+void display()
+{
+    p1=start;
+    while(p1!=NULL)
+    {
+        printf("%d x^ %d",p1->cof,p1->pwr);
+        p1=p1->next;
+        if (p1!=NULL)
+        {printf(" + ");}
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int ch;
+    while(1)
+    {   printf("1.insert \n 2.display \n 3.exit\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1: {insert();break;}
+            case 2: {display();break;}
+            case 3: {exit (0);}
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
