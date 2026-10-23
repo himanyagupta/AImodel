@@ -1,0 +1,142 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node 
+{int data;
+struct node *prev;
+struct node *next;};
+
+struct node *start=NULL;
+struct node *prev=NULL;
+struct node *tail= NULL;
+
+struct node *newnode()
+{return (struct node*)malloc (sizeof(struct node));}
+
+void insert_begin(int x)
+{
+    struct node *p= newnode();
+    p-> data=x;
+    p->prev= NULL;
+    p->next=start;
+    if (start==NULL)
+    {
+        start=tail=p;
+    }
+   
+    start->prev=p;
+    start=p;
+}
+
+void insert_end(int x)
+{
+   struct node *p= newnode();
+    p-> data=x;
+    p->next=NULL;
+    p->prev=tail;
+    if (tail==NULL)
+    {
+        start=tail=p;
+    }
+    tail->next=p;
+    tail=p;
+}
+
+void delete_begin()
+{
+    struct node *temp;
+    if (start==NULL)
+    {
+        printf("empty \n");return;
+    }
+    if (start->next ==NULL)
+    {
+        free(start);
+        start=tail=NULL;
+        return;
+    }
+    temp=start;
+    start=start->next;
+    start->prev=NULL;
+    free(temp);
+}
+
+void delete_end()
+{
+    struct node *temp;
+    if (tail==NULL)
+    {printf("empty");return;}
+    temp=tail;
+    tail=tail->prev;
+    if (tail == NULL) 
+    {
+        start = NULL;
+    } 
+    else 
+    {
+        tail->next = NULL;
+    }
+
+    free(temp);
+}
+
+void forward_traversal()
+{
+    struct node *q=start;
+    while(q!= NULL)
+    {
+        printf("%d \n",q->data);q=q->next;
+    }
+
+}
+void backward_traversal()
+{
+    struct node *q=tail;
+    while (q!= NULL)
+    {
+        printf("%d ",q->data);
+        q=q->prev;
+    }
+}
+int main()
+{int ch,x;
+while(1)
+    {printf("1.insert begin \n 2.insert end \n 3.delete begin \n 4.delete end \n 5.displayforward \n 6. display backward \n 7.exit \n\t ENTER YOUR CHOICE");
+    scanf("%d",&ch);
+    switch(ch)
+    {case 1: {printf("enter item u want to add");
+              scanf("%d",&x);
+              insert_begin(x);
+              break;}
+    case 2: {printf("enter item u want to add");
+              scanf("%d",&x);
+              insert_end(x);
+              break;}
+    case 3: {delete_begin();break;}
+    case 4: {delete_end();break;}
+    case 5: {forward_traversal();break;}
+    case 6: {backward_traversal();break;}
+    case 7: {exit(0);}
+    default: printf("invalid choice");
+    }
+    
+}return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
